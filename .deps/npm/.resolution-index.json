@@ -1,0 +1,168 @@
+{
+  "StorageFactoryPrac.sol": {
+    "__sources__": {
+      "StorageFactoryPrac.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract dataStorage{\r\n\r\nint256 public num; // if u dont write public here u wont be able to see it in deploy and run transactions coz its internal by default then\r\n\r\nstruct Info{\r\n    int age;\r\n    string name;\r\n    string degree;\r\n}\r\n\r\nInfo[] public infoList; \r\n\r\nmapping(string => string) public nameToDegree;\r\n\r\nfunction addDetails(int _age , string memory _name , string memory _degree) public{\r\ninfoList.push(Info(_age ,_name ,_degree));\r\nnameToDegree[_name] = _degree;\r\n}\r\n\r\n\r\nfunction getNum(int256 n) public{\r\n    num = n;\r\n}\r\n\r\nfunction onlyView() public view returns(int256){\r\n    return num;\r\n}\r\n\r\nfunction onlyPure(int a , int b) public pure returns(int256){\r\n    return a + b;\r\n}\r\n\r\n\r\n\r\n}\r\n\r\n\r\ncontract StorageFactory{\r\n\r\ndataStorage public dataStorage2;\r\n\r\nfunction makeNewContract() public{\r\n    dataStorage2 = new dataStorage();\r\n}\r\n\r\n\r\n\r\n}",
+        "file": "StorageFactoryPrac.sol"
+      }
+    }
+  },
+  "StorageFactory/Importmethod.sol": {
+    "StorageFactory/SimpleStorage.sol": "StorageFactory/SimpleStorage.sol",
+    "__sources__": {
+      "StorageFactory/Importmethod.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\nimport \"StorageFactory/SimpleStorage.sol\";\r\n\r\n// lets say if we have multiple contract written in one file and u want some limited contract imports only then this is how u write\r\n// import {dataStorage , dataStorage5} from \"StorageFactory/SimpleStorage.sol\";\r\n\r\ncontract storageFactory{\r\n\r\ndataStorage public dataStorage2;\r\n\r\nfunction makeContract() public{\r\n    dataStorage2 = new dataStorage();\r\n}\r\n\r\n\r\n}\r\n\r\n\r\n",
+        "file": "StorageFactory/Importmethod.sol"
+      },
+      "StorageFactory/SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract dataStorage{\r\n\r\nint256 public num; // if u dont write public here u wont be able to see it in deploy and run transactions coz its internal by default then\r\n\r\nstruct Info{\r\n    int age;\r\n    string name;\r\n    string degree;\r\n}\r\n\r\nInfo[] public infoList; \r\n\r\nmapping(string => string) public nameToDegree;\r\n\r\nfunction addDetails(int _age , string memory _name , string memory _degree) public{\r\ninfoList.push(Info(_age ,_name ,_degree));\r\nnameToDegree[_name] = _degree;\r\n}\r\n\r\n\r\nfunction getNum(int256 n) public virtual{\r\n    num = n;\r\n}\r\n\r\nfunction onlyView() public view returns(int256){\r\n    return num;\r\n}\r\n\r\nfunction onlyPure(int a , int b) public pure returns(int256){\r\n    return a + b;\r\n}\r\n\r\n\r\n\r\n}",
+        "file": "StorageFactory/SimpleStorage.sol"
+      }
+    }
+  },
+  "StorageFactory/Inheritance.sol": {
+    "StorageFactory/SimpleStorage.sol": "StorageFactory/SimpleStorage.sol",
+    "__sources__": {
+      "StorageFactory/Inheritance.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\nimport {dataStorage} from \"StorageFactory/SimpleStorage.sol\";\r\n\r\n// contract addFive is dataStorage{} this will give exact same thing as datastorage contract would have given when deployed\r\n\r\ncontract addFive is dataStorage{\r\n// virtual is used in a parent contract to allow a function to be overridden, while override is used in a child contract to provide a new implementation for that function.\r\n    function getNum(int256 n) public override{\r\n        num = n+5;\r\n    }\r\n  // the dataStorage is the parent(base) contract and this is the child contract and u generally do inheritance when u fuly like the contract just ek do function u want to change\r\n  // here override means jo parent contract me function hai usko change karna so parent contract me u gotta give permission to override it so in parent contracct in that function u weite \"virtual\" so this gives permission to override a function\r\n  // and u write exact same name of a function and variables\r\n}\r\n\r\n",
+        "file": "StorageFactory/Inheritance.sol"
+      },
+      "StorageFactory/SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract dataStorage{\r\n\r\nint256 public num; // if u dont write public here u wont be able to see it in deploy and run transactions coz its internal by default then\r\n\r\nstruct Info{\r\n    int age;\r\n    string name;\r\n    string degree;\r\n}\r\n\r\nInfo[] public infoList; \r\n\r\nmapping(string => string) public nameToDegree;\r\n\r\nfunction addDetails(int _age , string memory _name , string memory _degree) public{\r\ninfoList.push(Info(_age ,_name ,_degree));\r\nnameToDegree[_name] = _degree;\r\n}\r\n\r\n\r\nfunction getNum(int256 n) public virtual{\r\n    num = n;\r\n}\r\n\r\nfunction onlyView() public view returns(int256){\r\n    return num;\r\n}\r\n\r\nfunction onlyPure(int a , int b) public pure returns(int256){\r\n    return a + b;\r\n}\r\n\r\n\r\n\r\n}",
+        "file": "StorageFactory/SimpleStorage.sol"
+      }
+    }
+  },
+  "SimpleStorage/SimpleStoragePrac.sol": {
+    "__sources__": {
+      "SimpleStorage/SimpleStoragePrac.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.19;\r\n\r\ncontract SimpleStorage{\r\n    bool isTrue = true;\r\n    int256 isInt=88;\r\n    uint256 isUINT = 32;\r\n    string isString = \"cat\";\r\n    bytes32 isBytes = \"saad\";\r\n    address myAddress = 0xc9DDba2c60cB6fA96e57A713D3d5348224d325C8;  \r\n}",
+        "file": "SimpleStorage/SimpleStoragePrac.sol"
+      }
+    }
+  },
+  "SimpleStorage/SimpleStorage.sol": {
+    "__sources__": {
+      "SimpleStorage/SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n// It tells anyone reading the code (and the software compiling it) how the code is licensed. MIT is a very popular, permissive open-source license. It essentially means: \"Hey, anyone can use, modify, or share this code for free.\"\r\n// Solidity highly encourages putting this at the top of your files to avoid legal ambiguity about who owns or can use the code.\r\n\r\npragma solidity ^0.8.19; // this is the solidity compiler version we using\r\n// A \"pragma\" is an instruction to the Solidity compiler (the tool that translates your human-readable code into machine code that the blockchain can understand).\r\n\r\n contract SimpleStorage{\r\n // basic variable types\r\n\r\n bool hasFavouriteNumber = true;\r\n uint256 favouriteNumber = 88;\r\n string favouriteNumberInText = \"Eighty-Eight\";\r\n address myAddress = 0xc9DDba2c60cB6fA96e57A713D3d5348224d325C8;  \r\n int256 favouriteInt = -88;\r\n bytes32 favouriteBytes32 = \"cat\";\r\n uint256 abc; // it sets the value to 0 by default and its just here we are initializing\r\n\r\n }\r\n\r\n // this is the main body of the program and contract keyword is very similar to word class in javscript or java and simplestorage is the name of the class\r\n\r\n // uint means unsigned integer which can store 0 and + whole no (0 to 2^(256)-1)\r\n // int means signed interger which can store +ve and -ve both ( -2^{255} to 2^{255} -1)\r\n // ; means end of statement",
+        "file": "SimpleStorage/SimpleStorage.sol"
+      }
+    }
+  },
+  "SimpleStorage/function.sol": {
+    "__sources__": {
+      "SimpleStorage/function.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract SimpleStorage{\r\n   \r\n   uint256 public number; // it will make the number variable visible in deployed contract section in deploy and run transaction\r\n // uint number or \"uint internal number\"   ..... these both thing are same are they are not visible unless u make it public\r\n   \r\n   function store(uint no) public{\r\n     number = no;\r\n\r\n   }\r\n// how it works basically in deployed contrtacts when u select store function and write whatever no(num) thats get updated to no and then to number\r\n\r\n\r\n// VIEW ONLY FUNCTION\r\n\r\nfunction getnumber() public view returns(uint256){\r\n    return number;\r\n}\r\n\r\n// A view function reads data from the contract's history (state variables) but promises never to change or write anything. and u spend 0 gas coz u arent changing anything in the blockchain\r\n\r\n\r\n\r\n// PURE ONLY FUNCTION\r\n\r\n\r\nfunction addNumbers(uint256 a, uint256 b) public pure returns (uint256) {\r\n    return a + b; \r\n}\r\n\r\n\r\n// A pure function does not read and does not write anything to the contract's history. It relies only on the inputs you pass into it right then and there. its also free when called externally\r\n\r\n\r\n// When you run a view or pure function, you are essentially asking the blockchain, \"Hey, if I look at this data or run this calculation right now, what would the result be?\" Because it's just a preview, no data actually moves or changes on the blockchain ledger.\r\n\r\n\r\n// solidity has same logic for scope that is local and global scope rehte hai iske paas\r\n}\r\n\r\n// Visibility \r\n\r\n// In Solidity, functions and variables can have one of these four visibility specifiers:\r\n\r\n\r\n\r\n// public — The Front Yard\r\n\r\n// What it means: Anyone can walk up and see it or use it.\r\n\r\n// The Analogy: It’s like a bench in your front yard. You can sit on it, your family can sit on it, and strangers walking down the street can sit on it too.\r\n\r\n\r\n\r\n\r\n\r\n// private — Your Locked Bedroom Diary\r\n\r\n// What it means: Only the exact contract it was written in can use it. No one else.\r\n\r\n// The Analogy: It’s like a diary locked inside your private bedroom drawer. Only you can read it. Even your own children (derived contracts) aren't allowed to touch it.\r\n\r\n// Note: In blockchain, \"private\" doesn't mean \"secret.\" People looking at the blockchain can still see the diary exists, they just aren't allowed to open or use it in code.\r\n\r\n\r\n\r\n\r\n\r\n// external — The Drive-Thru Window\r\n// What it means: This is only for functions (actions). It can only be called from outside the house. You cannot easily call it from inside your own code.\r\n\r\n// The Analogy: It’s like a fast-food drive-thru window. It is built specifically for outsiders in cars to roll up and use. If you are already inside the kitchen, you don't line up at the drive-thru window to get a burger; you just grab it from the counter.\r\n\r\n\r\n\r\n// internal — The Family Living Room (The Default)\r\n// What it means: Only the contract itself and its \"child\" contracts (inheritance) can use it.\r\n\r\n// The Analogy: It’s like the TV in the family living room. You can use it, and your children who inherit the house can use it. But a stranger walking by on the street cannot walk inside and change the channel.\r\n\r\n\r\n\r\n//If a visibility specifier is not given, it defaults to internal.\r\n\r\n\r\n",
+        "file": "SimpleStorage/function.sol"
+      }
+    }
+  },
+  "SimpleStorage/arrays_structs.sol": {
+    "__sources__": {
+      "SimpleStorage/arrays_structs.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract Storage{\r\n\r\nint256 number;\r\n\r\n// datatype visibility var_name \r\nint256[] listOfNumbers; // array inittiate ka method\r\n\r\n// A struct in Solidity is a custom, user-defined data type that allows you to group several related variables together under a single name.\r\n\r\nstruct Details{\r\n    int256 num;\r\n    string name;\r\n\r\n}\r\n\r\n\r\n// Details public person1 = Details({ num:7 , name:\"Saad\"});  or like this Details(7,\"Saad\");\r\n\r\n// but ab bahot jyaada log hai toh uppar vala method is quite tedious so we use array to make it simpler\r\n\r\n// array bhi do types 1) dynamic array.... Person[] when u do not metnion size of the array then its flexible ... 2)static array....Person[3] here the size is fixed it can only go upto 3 so its a static array\r\n\r\nDetails[] public listofPeople; // starts with 0 index and in deploy in listofpeople i have to just write index to get the result \r\n// above the name of the array is listofPeople which is telling that it holds data type of Details struct\r\n\r\nfunction GetNumber(int256 n) public{\r\nnumber = n;\r\n\r\n}\r\n\r\nfunction View() public view returns(int256){\r\n    return number;\r\n}\r\n\r\nfunction Pure(int256 a , int256 b ) public pure returns(int256){\r\n    return a+b;\r\n}\r\n\r\nfunction addPerson(int256 _num , string memory _name) public{\r\nlistofPeople.push(Details(_num , _name));\r\n\r\n}\r\n\r\n// the array will look something like this [{struct 1},{struct 2},....]\r\n\r\n\r\n\r\n}\r\n\r\n",
+        "file": "SimpleStorage/arrays_structs.sol"
+      }
+    }
+  },
+  "SimpleStorage/storageCalldataMemory.sol": {
+    "__sources__": {
+      "SimpleStorage/storageCalldataMemory.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract Storage{\r\n\r\nint256 number; // storage location pe this is stored\r\n\r\nstruct Details{\r\n    int256 id;\r\n    string name;\r\n    int256 age;\r\n}\r\n\r\nDetails[] public listofPeople;\r\n\r\nfunction addpeople(int _id , string memory _name , int _age) public{\r\n_name = \"saad\";  // this is working coz string ki location is memory and its mutable and if u save string calldata _name this would have given error coz its immutable\r\n// here no matter what name u insert saad will override everyone \r\n    listofPeople.push(Details(_id, _name , _age));\r\n}\r\n\r\n\r\nfunction GetNumber(int256 n) public{\r\nnumber = n;\r\n\r\n}\r\n\r\nfunction View() public view returns(int256){\r\n    return number;\r\n}\r\n\r\nfunction Pure(int256 a , int256 b ) public pure returns(int256){\r\n    return a+b;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n}",
+        "file": "SimpleStorage/storageCalldataMemory.sol"
+      }
+    }
+  },
+  "SimpleStorage/mappingPrac.sol": {
+    "__sources__": {
+      "SimpleStorage/mappingPrac.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract Storage{\r\n\r\nint256 number;\r\n\r\nstruct Details{\r\n    int256 id;\r\n    string name;\r\n    int256 age;\r\n}\r\n\r\nDetails[] public listofPeople;\r\n\r\nmapping(string => int) public nameAgemapping;\r\n\r\nfunction addpeople(int _id , string memory _name , int _age) public{\r\n    listofPeople.push(Details(_id, _name , _age));\r\n    nameAgemapping[_name] = _age;\r\n}\r\n\r\n\r\nfunction GetNumber(int256 n) public{\r\nnumber = n;\r\n\r\n}\r\n\r\nfunction View() public view returns(int256){\r\n    return number;\r\n}\r\n\r\nfunction Pure(int256 a , int256 b ) public pure returns(int256){\r\n    return a+b;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n}",
+        "file": "SimpleStorage/mappingPrac.sol"
+      }
+    }
+  },
+  "SimpleStorage/Practice.sol": {
+    "__sources__": {
+      "SimpleStorage/Practice.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract dataStorage{\r\n\r\n// data_type  visibilty var_name\r\nint256 public num; // if u dont write public here u wont be able to see it in deploy and run transactions coz its internal by default then\r\n\r\nstruct Info{\r\n    int age;\r\n    string name;\r\n    string degree;\r\n}\r\n\r\nInfo[] public infoList; \r\n\r\nmapping(string => string) public nameToDegree;\r\n\r\nfunction addDetails(int _age , string memory _name , string memory _degree) public{\r\ninfoList.push(Info(_age ,_name ,_degree));\r\nnameToDegree[_name] = _degree;\r\n}\r\n\r\n\r\nfunction getNum(int256 n) public{\r\n    num = n;\r\n}\r\n\r\nfunction onlyView() public view returns(int256){\r\n    return num;\r\n}\r\n\r\nfunction onlyPure(int a , int b) public pure returns(int256){\r\n    return a + b;\r\n}\r\n\r\n\r\n\r\n}",
+        "file": "SimpleStorage/Practice.sol"
+      }
+    }
+  },
+  "SimpleStorage/mapping.sol": {
+    "__sources__": {
+      "SimpleStorage/mapping.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract Storage{\r\n\r\nint256 number;\r\n\r\n\r\nmapping(string => int) public mapId; // so basically mapping works like this mapping(key => value returned) and here public means mapping accesible from outside the contract and mapId is the name of mapping variable\r\n\r\nstruct Details{\r\n    int256 id;\r\n    string name;\r\n    int256 age;\r\n}\r\n\r\nDetails[] public listofPeople;\r\n\r\nfunction addpeople(int _id , string memory _name , int _age) public{\r\n    listofPeople.push(Details(_id, _name , _age));\r\n    mapId[_name] = _id; // \"Find the storage slot associated with the text string _name, and place the number _id into it.\"\r\n    // mapId[_name] is not an array at all. Even though it uses square brackets [ ]—which can look confusing because arrays use them too—this is just the syntax Solidity uses to look up a key inside a mapping.\r\n}\r\n\r\n\r\nfunction GetNumber(int256 n) public{\r\nnumber = n;\r\n\r\n}\r\n\r\nfunction View() public view returns(int256){\r\n    return number;\r\n}\r\n\r\nfunction Pure(int256 a , int256 b ) public pure returns(int256){\r\n    return a+b;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n}",
+        "file": "SimpleStorage/mapping.sol"
+      }
+    }
+  },
+  "SimpleStorage/Practice2.sol": {
+    "__sources__": {
+      "SimpleStorage/Practice2.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract Practice2{\r\n    int256 public num;\r\n\r\n    struct dataSet{\r\n      string name;\r\n      uint age;\r\n    }\r\n\r\n    mapping(string => uint256) public nameToAge;\r\n\r\n    dataSet[] public listOfDataSet;\r\n\r\n    function setNum(int256 _num) public{\r\n        num = _num;\r\n    }\r\n\r\n\r\n  function addDataSet(string memory _name , uint _age) public{\r\n    listOfDataSet.push(dataSet(_name,_age));\r\n   nameToAge[_name] = _age;\r\n  }\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    function viewNum() public view returns(int256){\r\n        return num;\r\n    }\r\n\r\n    function addNum(int a , int b) public pure returns(int256){\r\n        return a+b;\r\n    }\r\n\r\n\r\n}",
+        "file": "SimpleStorage/Practice2.sol"
+      }
+    }
+  },
+  "StorageFactory/StorageFactory.sol": {
+    "__sources__": {
+      "StorageFactory/StorageFactory.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\n\r\n// METHOD TO LINK UP CONTRACTS and making address for the other contract from the previous contract by linking them up\r\n\r\n// 1st CONTRACT\r\ncontract dataStorage{\r\n\r\nint256 public num; // if u dont write public here u wont be able to see it in deploy and run transactions coz its internal by default then\r\n\r\nstruct Info{\r\n    int age;\r\n    string name;\r\n    string degree;\r\n}\r\n\r\nInfo[] public infoList; \r\n\r\nmapping(string => string) public nameToDegree;\r\n\r\nfunction addDetails(int _age , string memory _name , string memory _degree) public{\r\ninfoList.push(Info(_age ,_name ,_degree));\r\nnameToDegree[_name] = _degree;\r\n}\r\n\r\n\r\nfunction getNum(int256 n) public{\r\n    num = n;\r\n}\r\n\r\nfunction onlyView() public view returns(int256){\r\n    return num;\r\n}\r\n\r\nfunction onlyPure(int a , int b) public pure returns(int256){\r\n    return a + b;\r\n}\r\n\r\n\r\n\r\n}\r\n\r\n\r\n\r\n// 2nd CONTRACT\r\n\r\n// basically what happened here u are making a storageFactory contract so u are basically kinda here rn copying the above contract info with new address so its new contract only coz diff addresss\r\n\r\ncontract storageFactory{\r\n// format is (data type visibility variable_name)\r\ndataStorage public dataStorage2; // basically this creates a variable dataStorage2 variable which stores dataStorage contract info qwith his own new address\r\n// Whenever you declare a state variable as public, Solidity automatically does some magic behind the scenes: it creates a hidden \"getter\" function for that variable.basically it creates a blue button for it in deployment\r\n\r\n\r\nfunction createSimpleStorageContract() public{\r\ndataStorage2 = new dataStorage(); // here new words tells that take the data from dataStorage contract and store in dataStorage2 and it will have different address\r\n// here new word tells It tells the compiler that a new contract instance is intended to be deployed after compilation.\r\n// It does not copy all the actual storage data into the factory. Instead, your factory uses that dataStorage template (or blueprint) to spawn a brand-new, empty contract out into the blockchain world, and then it just remembers the address of where it put it.so basically new addres with a template we get or u can say at that address we got a template\r\n\r\n}\r\n\r\n}\r\n\r\n// what does dataStorage public dataStorage2 means\r\n\r\n// dataStorage (The Type):\r\n// In regular programming, you might declare a variable as an int, string, or bool. In Solidity, a contract name is also a data type which is a custom data type. By writing dataStorage, you are telling the blockchain: \"This variable is only allowed to hold the address of a contract that fits the dataStorage blueprint.\" It's a safety guard so you don't accidentally store a wallet address or a completely different contract type here.\r\n\r\n\r\n// public (The Visibility):\r\n// As we discussed earlier, this tells Solidity to automatically make that blue button in Remix. It allows anyone outside this contract to read and see what address is currently stored inside this variable.\r\n\r\n\r\n// dataStorage2 (The Name):\r\n// This is simply the custom name you chose for this specific slot (like naming a variable x or myTotal).",
+        "file": "StorageFactory/StorageFactory.sol"
+      }
+    }
+  },
+  "StorageFactory/InteractingWithContractsABI.sol": {
+    "StorageFactory/SimpleStorage.sol": "StorageFactory/SimpleStorage.sol",
+    "__sources__": {
+      "StorageFactory/InteractingWithContractsABI.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\nimport {dataStorage} from \"StorageFactory/SimpleStorage.sol\"; // u imported that blueprint from that file \r\n\r\ncontract StorageFactory{\r\n\r\ndataStorage[] public listOfContracts;  // listofContracts is a variable with data type dataStorage[] so basically an array jisme andar ka item must be similar to dataStorage\r\n\r\nfunction newContracts() public{\r\n    dataStorage VariableContract = new dataStorage(); // ab array me har ek ghar ko blueprint kaise dena voh likha here dataStorage is a data type and Variabelcontract is the variable name jisko blueprint milega\r\n    listOfContracts.push(VariableContract); // and then har ek ghar banne ke baad apan apni array me add karre\r\n}\r\n\r\n\r\n// in order to intersct with contract u need two things\r\n// address\r\n// ABI-Application Binary interface (it will tell our code how u can interact with another contract) basically jo button deployed karne ke baad dikhte its just becoz complier sees the abi and vha se use pata chalta kitne buttons daalna hai\r\n// explanation neeche hai code ke above vali cheez ka\r\nfunction newContractsDataStore(uint256 _simpleStorageIndex , int256 num) public{\r\n    listOfContracts[_simpleStorageIndex].getNum(num);\r\n    // // Because an int256 could theoretically hold a negative number, Solidity gets scared and throws an error to protect your contract from breaking. It demands that all array indexes be a uint256\r\n}\r\n\r\n// listOfContracts is an array that stores deployed contract instances. When you pass _simpleStorageIndex, you are grabbing a specific contract from that list. Solidity looks up that item and says: \"Okay, I found it. The blockchain address for this contract is 0xabc123...\" #### 2. The ABI (What buttons does it have?)\r\n// Because listOfContracts was defined using the contract's type (e.g., dataStorage[] listOfContracts), the compiler already has the ABI built into its memory. It knows exactly what \"buttons\" that contract has.\r\n// When you type .getNum(num), the compiler checks the ABI to make sure a button named getNum actually exists and that it accepts an int256 variable. If it matches, the compiler packages your num variable into data the other contract can understand.\r\n\r\n// ab above code me jo blueprint ban gaye usme simplestorage se num ko value dene ka method hai by using getNum function from that file ka function hai\r\n\r\nfunction check(uint _simpleStorageIndex) public view returns(int256){\r\nreturn listOfContracts[_simpleStorageIndex].onlyView();\r\n}\r\n\r\n// just to review ki jo number assign kara vhi mila ya nhi\r\n\r\n}\r\n\r\n// what actually happened ki SimpleStorage.sol file hai voh basically blueprint hai and then yaha uppar what we did vhi blueprint use karke multiple same contract banaye and then uske baad har contract me ya har address pe ek number diya so basically u are linking up multiple contract in short\r\n\r\n",
+        "file": "StorageFactory/InteractingWithContractsABI.sol"
+      },
+      "StorageFactory/SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract dataStorage{\r\n\r\nint256 public num; // if u dont write public here u wont be able to see it in deploy and run transactions coz its internal by default then\r\n\r\nstruct Info{\r\n    int age;\r\n    string name;\r\n    string degree;\r\n}\r\n\r\nInfo[] public infoList; \r\n\r\nmapping(string => string) public nameToDegree;\r\n\r\nfunction addDetails(int _age , string memory _name , string memory _degree) public{\r\ninfoList.push(Info(_age ,_name ,_degree));\r\nnameToDegree[_name] = _degree;\r\n}\r\n\r\n\r\nfunction getNum(int256 n) public virtual{\r\n    num = n;\r\n}\r\n\r\nfunction onlyView() public view returns(int256){\r\n    return num;\r\n}\r\n\r\nfunction onlyPure(int a , int b) public pure returns(int256){\r\n    return a + b;\r\n}\r\n\r\n\r\n\r\n}",
+        "file": "StorageFactory/SimpleStorage.sol"
+      }
+    }
+  },
+  "StorageFactory/InteractingWithContractsABIPrac.sol": {
+    "StorageFactory/SimpleStorage.sol": "StorageFactory/SimpleStorage.sol",
+    "__sources__": {
+      "StorageFactory/InteractingWithContractsABIPrac.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\nimport {dataStorage} from \"StorageFactory/SimpleStorage.sol\";\r\n\r\ncontract bluePrint{\r\n\r\ndataStorage[] public listOfContracts;\r\n\r\nfunction BluePrintNewContracts() public{\r\n    dataStorage newContract = new dataStorage();\r\n    listOfContracts.push(newContract);\r\n}\r\n\r\nfunction InsertData(uint256 _Index , int256 _num) public{\r\n    listOfContracts[_Index].getNum(_num);  \r\n}\r\n\r\nfunction CheckData(uint256 _Index) public view returns(int256){\r\n    return listOfContracts[_Index]. onlyView();\r\n}\r\n\r\n}",
+        "file": "StorageFactory/InteractingWithContractsABIPrac.sol"
+      },
+      "StorageFactory/SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract dataStorage{\r\n\r\nint256 public num; // if u dont write public here u wont be able to see it in deploy and run transactions coz its internal by default then\r\n\r\nstruct Info{\r\n    int age;\r\n    string name;\r\n    string degree;\r\n}\r\n\r\nInfo[] public infoList; \r\n\r\nmapping(string => string) public nameToDegree;\r\n\r\nfunction addDetails(int _age , string memory _name , string memory _degree) public{\r\ninfoList.push(Info(_age ,_name ,_degree));\r\nnameToDegree[_name] = _degree;\r\n}\r\n\r\n\r\nfunction getNum(int256 n) public virtual{\r\n    num = n;\r\n}\r\n\r\nfunction onlyView() public view returns(int256){\r\n    return num;\r\n}\r\n\r\nfunction onlyPure(int a , int b) public pure returns(int256){\r\n    return a + b;\r\n}\r\n\r\n\r\n\r\n}",
+        "file": "StorageFactory/SimpleStorage.sol"
+      }
+    }
+  },
+  "StorageFactory/InteractingWithContractsABIPrac2.sol": {
+    "StorageFactory/SimpleStorage.sol": "StorageFactory/SimpleStorage.sol",
+    "__sources__": {
+      "StorageFactory/InteractingWithContractsABIPrac2.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\nimport {dataStorage} from \"StorageFactory/SimpleStorage.sol\";\r\ncontract BluePrint{\r\n   dataStorage[] public store;\r\n\r\n   function createContractsData() public{\r\n    dataStorage newData = new dataStorage();\r\n    store.push(newData);\r\n   }\r\n\r\n   function assignnum(uint _Index,int _num) public{\r\n    store[_Index].getNum(_num);\r\n   }\r\n\r\n   function checkNum(uint _Index) public view returns(int256){\r\n    return store[_Index].onlyView();\r\n   }\r\n\r\n}",
+        "file": "StorageFactory/InteractingWithContractsABIPrac2.sol"
+      },
+      "StorageFactory/SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract dataStorage{\r\n\r\nint256 public num; // if u dont write public here u wont be able to see it in deploy and run transactions coz its internal by default then\r\n\r\nstruct Info{\r\n    int age;\r\n    string name;\r\n    string degree;\r\n}\r\n\r\nInfo[] public infoList; \r\n\r\nmapping(string => string) public nameToDegree;\r\n\r\nfunction addDetails(int _age , string memory _name , string memory _degree) public{\r\ninfoList.push(Info(_age ,_name ,_degree));\r\nnameToDegree[_name] = _degree;\r\n}\r\n\r\n\r\nfunction getNum(int256 n) public virtual{\r\n    num = n;\r\n}\r\n\r\nfunction onlyView() public view returns(int256){\r\n    return num;\r\n}\r\n\r\nfunction onlyPure(int a , int b) public pure returns(int256){\r\n    return a + b;\r\n}\r\n\r\n\r\n\r\n}",
+        "file": "StorageFactory/SimpleStorage.sol"
+      }
+    }
+  },
+  "StorageFactory/inheritancePrac.sol": {
+    "StorageFactory/SimpleStorage.sol": "StorageFactory/SimpleStorage.sol",
+    "__sources__": {
+      "StorageFactory/inheritancePrac.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\nimport {dataStorage} from \"StorageFactory/SimpleStorage.sol\";\r\n\r\ncontract Addfive is dataStorage{\r\nfunction getNum(int256 n) public override{\r\n    num = n +5;\r\n}\r\n\r\n}",
+        "file": "StorageFactory/inheritancePrac.sol"
+      },
+      "StorageFactory/SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract dataStorage{\r\n\r\nint256 public num; // if u dont write public here u wont be able to see it in deploy and run transactions coz its internal by default then\r\n\r\nstruct Info{\r\n    int age;\r\n    string name;\r\n    string degree;\r\n}\r\n\r\nInfo[] public infoList; \r\n\r\nmapping(string => string) public nameToDegree;\r\n\r\nfunction addDetails(int _age , string memory _name , string memory _degree) public{\r\ninfoList.push(Info(_age ,_name ,_degree));\r\nnameToDegree[_name] = _degree;\r\n}\r\n\r\n\r\nfunction getNum(int256 n) public virtual{\r\n    num = n;\r\n}\r\n\r\nfunction onlyView() public view returns(int256){\r\n    return num;\r\n}\r\n\r\nfunction onlyPure(int a , int b) public pure returns(int256){\r\n    return a + b;\r\n}\r\n\r\n\r\n\r\n}",
+        "file": "StorageFactory/SimpleStorage.sol"
+      }
+    }
+  }
+}
