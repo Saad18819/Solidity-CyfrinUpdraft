@@ -1,0 +1,22 @@
+// SPDX-License-Identifier: MIT
+
+pragma solidity ^0.8.19;
+
+import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
+
+contract giveMeFund{
+
+uint256 public constant Minimum_USD = 5;
+
+function fund() public payable{
+    require(msg.value>Minimum_USD , "Work hard and pay me more ETH brooo");
+}
+
+function getPrice() public view returns(uint256){
+
+(,int256 price,,,) = AggregatorV3Interface(0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419).latestRoundData();
+
+return uint256(price*1e10);
+}
+
+}

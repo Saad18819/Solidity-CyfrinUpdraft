@@ -6,7 +6,7 @@ contract FundMe{
     uint public value  = 1;
     function fund() public payable{
       value = value + 1;
-        require(msg.value>1e18 , "you need to spedn more eth");
+        require(msg.value>1e18 , "you need to spend more eth");
     }
 
     // REVERT THING
