@@ -68,4 +68,6 @@ Think of it as a resetting process for a recurring cycle. Let's trace exactly wh
 so basically kya hora u got funds from thrree different wallet address  ab it iwll look something like this = [add1 , add2 , add3] ab inse withdraw karliye amnt so why the fuck abb inko array me rakhege so we just clean it after withdraw and make a new array so ab jo bhi fund dega we will store it in fresh array although previous history delete ho jayegi but blockchain network pe toh haina
  although abhi withdraw ka logiv nhi likha but uske baad ka llikha hai for now
 
+
+ the syntax is new address[](0);  here address[] ddata type hai and (0) means exact 0 element hai and new means array banaye new jisme data address rahega with 0 elements initially
 */
