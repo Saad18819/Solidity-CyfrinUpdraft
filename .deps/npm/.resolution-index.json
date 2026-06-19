@@ -398,6 +398,19 @@
       }
     }
   },
+  "Project/FundMe7Prac.sol": {
+    "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": ".deps/npm/@chainlink/contracts@1.5.0/src/v0.8/shared/interfaces/AggregatorV3Interface.sol",
+    "__sources__": {
+      "Project/FundMe7Prac.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\nimport {AggregatorV3Interface} from \"@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol\";\r\n\r\ncontract giveMeFund{\r\n\r\nuint256 public constant Minimum_USD = 5 * 1e18;\r\n\r\naddress[] public UsersAddress;\r\nmapping(address funders => uint256 NetAmountPaid) public AddToAmnt;\r\n\r\nfunction fund() public payable{\r\n    require(AmntInUsd(msg.value)>Minimum_USD , \"Work hard and pay me more ETH brooo\");\r\n    UsersAddress.push(msg.sender);\r\n    AddToAmnt[msg.sender] = AddToAmnt[msg.sender] + msg.value;\r\n\r\n}\r\n\r\nfunction getPrice() public view returns(uint256){\r\n\r\n(,int256 price,,,) = AggregatorV3Interface(0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419).latestRoundData();\r\n\r\nreturn uint256(price*1e10);\r\n}\r\n\r\nfunction AmntInUsd(uint256 ethAmount) public view returns(uint256){\r\n    uint256 singleEthPriceInUsd = getPrice();\r\n    uint TotalPriceInUsd = (singleEthPriceInUsd * ethAmount)/1e18;\r\n\r\n    return TotalPriceInUsd;\r\n\r\n}\r\n\r\nfunction withdraw() public{\r\n    for(uint i = 0 ;i<UsersAddress.length ; i++){\r\n        address funders = UsersAddress[i];\r\n        AddToAmnt[funders] = 0;\r\n    }\r\n\r\n    UsersAddress = new address[](0);\r\n\r\n    // transfer\r\n\r\n    payable(msg.sender).transfer(address(this).balance);\r\n\r\n\r\n    // send\r\n\r\n    bool sendSuccess = payable(msg.sender).send(address(this).balance);\r\n    require(sendSuccess , \"Trans Failed\");\r\n\r\n    // call\r\n\r\n   (bool sendSucc ,) = payable(msg.sender).call{value:address(this).balance}(\"\");\r\n   require(sendSucc , \"Trans Failed\");\r\n\r\n}\r\n}",
+        "file": "Project/FundMe7Prac.sol"
+      },
+      "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\n// solhint-disable-next-line interface-starts-with-i\ninterface AggregatorV3Interface {\n  function decimals() external view returns (uint8);\n\n  function description() external view returns (string memory);\n\n  function version() external view returns (uint256);\n\n  function getRoundData(\n    uint80 _roundId\n  ) external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);\n\n  function latestRoundData()\n    external\n    view\n    returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);\n}\n",
+        "file": "@chainlink/contracts@1.5.0/src/v0.8/shared/interfaces/AggregatorV3Interface.sol"
+      }
+    }
+  },
   "Project/Fundme7.sol": {
     "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": ".deps/npm/@chainlink/contracts@1.5.0/src/v0.8/shared/interfaces/AggregatorV3Interface.sol",
     "__sources__": {
