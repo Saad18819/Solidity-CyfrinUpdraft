@@ -6,6 +6,11 @@
 	"output": {
 		"abi": [
 			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -25,8 +30,27 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "ethAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "AmntInUsd",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [],
-				"name": "Minimum_USD",
+				"name": "MINIMUM_USD",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -62,6 +86,39 @@
 				"outputs": [],
 				"stateMutability": "payable",
 				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
 			}
 		],
 		"devdoc": {
@@ -77,7 +134,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"Project/FundMe5Prac.sol": "giveMeFund"
+			"Project/FundMe10.sol": "giveMeFund"
 		},
 		"evmVersion": "osaka",
 		"libraries": {},
@@ -99,20 +156,12 @@
 				"dweb:/ipfs/QmaG6vz6W6iEUBsbHSBob5mdcitYxWjoygxREHpsJHfWrS"
 			]
 		},
-		"Project/FundMe5Prac.sol": {
-			"keccak256": "0x45e79f8d41dd62feecdfca445de83605b535b5b22cc2a19daf0b3d7b6cd6f88c",
+		"Project/FundMe10.sol": {
+			"keccak256": "0x3777958e18a3948fb98a15d8cc0b1b71e80262006cde02f8ee0ddca14d848167",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://19b80702dff7a387a329147ce554adec794cb22102eb96f62257d8450c96b4e7",
-				"dweb:/ipfs/Qmb9hYNpQj7XQpeGYV7zGPLVhUwg8Qy7RnLQw6UW5bm3La"
-			]
-		},
-		"Project/Fundme5Library.sol": {
-			"keccak256": "0xbe0e6ea299f11bf9b0fa21ae1aed7879bbc3a05f7801ad7f9f1c870f610fc5ee",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://f652df069acf9a45de16339b4b9a69e7109279fd621a1eb30632e906e03ce1a8",
-				"dweb:/ipfs/QmcLyMs82iSpt8jL4DPketgpBVhQ1qzjKszyQ4bn8aaXR4"
+				"bzz-raw://ef4e7e4a7457c2a14a4b76742f33e252f7fc46a7e586ca1a998ad60b8648e48f",
+				"dweb:/ipfs/QmRwhXdpv2kUNvPPKHH9J6RyL9EL8JVF21w9vP5VZjV4ZP"
 			]
 		}
 	},
