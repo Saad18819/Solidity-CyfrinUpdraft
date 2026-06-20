@@ -489,6 +489,14 @@
       }
     }
   },
+  "Project/FundMe12.sol": {
+    "__sources__": {
+      "Project/FundMe12.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\n\r\n\r\ncontract giveMeFund{\r\n\r\n\r\n\r\n}\r\n\r\n\r\n// what happens if someone send ETH without calling the fund function\r\n\r\n// we have 2 special functions such as receive() and fallback() function \r\n\r\n// a contract can have at most one receive function declared using receive external payable{....} without function keyword this function cannot have arguments cannot return anything and must have external visibility and shld be payable",
+        "file": "Project/FundMe12.sol"
+      }
+    }
+  },
   "Project/Fundme11.sol": {
     "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": ".deps/npm/@chainlink/contracts@1.5.0/src/v0.8/shared/interfaces/AggregatorV3Interface.sol",
     "__sources__": {
@@ -499,6 +507,14 @@
       "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": {
         "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\n// solhint-disable-next-line interface-starts-with-i\ninterface AggregatorV3Interface {\n  function decimals() external view returns (uint8);\n\n  function description() external view returns (string memory);\n\n  function version() external view returns (uint256);\n\n  function getRoundData(\n    uint80 _roundId\n  ) external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);\n\n  function latestRoundData()\n    external\n    view\n    returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);\n}\n",
         "file": "@chainlink/contracts@1.5.0/src/v0.8/shared/interfaces/AggregatorV3Interface.sol"
+      }
+    }
+  },
+  "Project/Fallback.sol": {
+    "__sources__": {
+      "Project/Fallback.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\n\r\n\r\ncontract FallbackExample{\r\n\r\nuint256 public result;\r\n\r\nreceive() external payable{\r\nresult = 1;\r\n}\r\n\r\nfallback() external payable{\r\n    result = 2;\r\n}\r\n\r\n\r\n}\r\n\r\n\r\n// what happens if someone send ETH without calling any function\r\n\r\n// we have 2 special functions such as receive() and fallback() function \r\n\r\n// a contract can have at most one receive function declared using receive external payable{....} without function keyword and this function cannot have arguments cannot return anything and must have external visibility and shld be payable\r\n\r\n\r\n\r\n/*\r\nNormally, if you want a contract to do something, you call a specific function (like increment() or mint()).\r\n\r\nBut what if someone just sends straight Ethereum to your contract address without calling any function?\r\n\r\nYour contract needs a way to say, \"Hey, someone just dumped Ether on me! What should I do?\" That is what receive() is for. It is a special, built-in Solidity function that triggered automatically when:\r\n\r\nSomeone sends Ether to the contract.\r\n\r\nThey do not specify any function to call (the transaction data field is completely empty)\r\n\r\n\r\n\r\n\r\n\r\n\r\nIn Remix, when you want to call a function, you click its orange or blue button. But to simulate someone just sending raw Ether to the contract without clicking a function, you have to use the Low-Level Interaction section at the very bottom of the deployed contract panel.\r\n\r\nBy leaving the Calldata field blank, putting 1 Wei or 1 Ether in the Value field, and hitting Transact, Patrick was simulating a user doing a direct wallet-to-contract transfer (like sending ETH from MetaMask directly to the contract address).\r\n\r\nBecause the transaction had no data (no function name), the EVM automatically routed the transaction into receive(). Inside receive(), Patrick wrote result = 1;. That's why the value changed!\r\n\r\n\r\n\r\n\r\n\r\n\r\nSolidity decides between receive() and fallback() using this simple logic tree:\r\n\r\nIs Ether sent in the transaction?\r\n                     /          \\\r\n                   Yes           No\r\n                   /               \\\r\n        Is Calldata empty?      Goes to fallback()\r\n             /       \\\r\n           Yes        No\r\n           /            \\\r\n    receive()          fallback()\r\n\r\n\r\n\r\n\r\n\r\n    receive(): Triggered when Ether is sent and Calldata is empty.\r\n\r\n    receive(): Triggered when Ether is sent and Calldata is empty.\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nThe fallback() function is the ultimate safety net of a Solidity smart contract.\r\n\r\nThink of it as the default case in a switch statement, or a \"catch-all\" router. If someone interacts with your contract and the Ethereum Virtual Machine (EVM) looks at the request and says, \"I have absolutely no idea what function you are trying to call,\" it immediately hands the transaction over to fallback().\r\n\r\n\r\nThere are two main scenarios that trigger the fallback function:\r\n\r\nThe Missing Function Scenario: A user or another contract tries to call a function name that does not exist in your contract code (e.g., calling transferTokens() on a contract that only has a mint() function).\r\n\r\nThe \"Ether with Data\" Scenario: Someone sends Ether directly to your contract address, but they also included extra data (msg.data) in the transaction payload, and that data doesn't match a valid function signature.\r\n\r\n\r\n\r\n\r\n\r\nJust like receive(), the fallback() function has a very specific, strict syntax. It does not use the function keyword, it must be marked external, and it can optionally be marked payable if you want it to be able to accept Ether.\r\n\r\n\r\n*/",
+        "file": "Project/Fallback.sol"
       }
     }
   }
