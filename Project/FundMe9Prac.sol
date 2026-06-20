@@ -4,8 +4,6 @@ pragma solidity ^0.8.19;
 
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 
-// WE WILL BE LEARNING ABT MODIFIERS in this
-
 contract giveMeFund{
 
 uint256 public constant Minimum_USD = 5 * 1e18;
@@ -41,11 +39,9 @@ function AmntInUsd(uint256 ethAmount) public view returns(uint256){
 
 }
 
-// here we added keyword onlyOwner which we created from modifier
-
 function withdraw() public onlyOwner{
 
-   //  require(msg.sender == owner , "You aint an owner brooo,Hard Luck");
+   
     for(uint i = 0 ;i<UsersAddress.length ; i++){
         address funders = UsersAddress[i];
         AddToAmnt[funders] = 0;
@@ -62,42 +58,7 @@ function withdraw() public onlyOwner{
 }
 
 modifier onlyOwner(){
-    require(msg.sender == owner , "You aint an owner brooo,Hard Luck");
-    _;
-
-    /*
-    here what exactly happens wheneever u write keyword in function it will run this modifier which is require here and then
-     _; says nows execute whatever else is in the function
-     if we put _; above require then it will say function execute whatever else inside function first and then rest of the code of modifiers
-    
-    
-    */
+ require(msg.sender == owner , "You aint an owner brooo,Hard Luck");
+ _;
 }
 }
-
-
-/* 
-
-WHY TO USE MODIFIERS:
-
-now the scene is we have so many function in which we just want owner to access so we gotta
-require(msg.sender == owner , "You aint an owner brooo,Hard Luck");
-put this line in every function and as an engineer we wanna work extremely hard to be extremely lazy
-
-
-
-and what modifier do basically it creates a keyword that we can put directly into the function
-
-and we dont give visisbilty to modifiers
-
-
-MECHANISM:
-
-it will go to function see the keyword comes down to modifier see the require code execute it and then _; goes back to fucntion and execute the rest of the function
-
-
-
-
-
-
-*/
