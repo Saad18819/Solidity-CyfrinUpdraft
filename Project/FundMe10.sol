@@ -6,7 +6,7 @@ import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interf
 
 // we will learn abt constant & immutability this keywords saves up a lot of gas becoz instead os toring these variables inside storage slot we directly store them inside the bytecode of the contract
 
-
+// Constant variables are initialized at compile time, while immutable variables are initialized at deployment time.
 contract giveMeFund{
 
     // when constant used : 348 gas (Cost only applies when called by a contract)
