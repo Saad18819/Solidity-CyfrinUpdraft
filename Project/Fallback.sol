@@ -16,6 +16,8 @@ fallback() external payable{
     result = 2;
 }
 
+// so basically in low level interaction if i write something in calldata(random hexadecimal thing) we will call the fallback function and if we do not write anything then receive function will be called
+
 
 }
 
