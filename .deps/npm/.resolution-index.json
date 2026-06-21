@@ -517,5 +517,13 @@
         "file": "Project/Fallback.sol"
       }
     }
+  },
+  "Project/FallbackPrac.sol": {
+    "__sources__": {
+      "Project/FallbackPrac.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract WorkHard{\r\n\r\n    uint256 public result;\r\n\r\n    receive() external payable{\r\nresult = 1;\r\n    }\r\n\r\n    fallback() external payable{\r\n        result = 2;\r\n    }\r\n\r\n}",
+        "file": "Project/FallbackPrac.sol"
+      }
+    }
   }
 }
