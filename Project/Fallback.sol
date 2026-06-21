@@ -39,7 +39,7 @@ Your contract needs a way to say, "Hey, someone just dumped Ether on me! What sh
 
 Someone sends Ether to the contract.
 
-They do not specify any function to call (the transaction data field is completely empty)
+They do not specify any function to call (the transaction data field is completely empty which is here calldata in low level interaction while testing here )
 
 
 
@@ -100,6 +100,11 @@ The "Ether with Data" Scenario: Someone sends Ether directly to your contract ad
 
 
 Just like receive(), the fallback() function has a very specific, strict syntax. It does not use the function keyword, it must be marked external, and it can optionally be marked payable if you want it to be able to accept Ether.
+
+
+To put it perfectly:No Data (msg.data is empty)It triggers receive().
+With Data (msg.data has content). It triggers fallback().
+There is just one tiny catch to add to your mental model: What happens if a contract receives a transaction with no data, but the receive() function wasn't defined? In that case, it will drop down and look for a fallback() function instead. If neither exists, the transaction reverts.
 
 
 */
