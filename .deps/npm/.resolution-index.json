@@ -33,14 +33,6 @@
       }
     }
   },
-  "SimpleStorage/SimpleStoragePrac.sol": {
-    "__sources__": {
-      "SimpleStorage/SimpleStoragePrac.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.19;\r\n\r\ncontract SimpleStorage{\r\n    bool isTrue = true;\r\n    int256 isInt=88;\r\n    uint256 isUINT = 32;\r\n    string isString = \"cat\";\r\n    bytes32 isBytes = \"saad\";\r\n    address myAddress = 0xc9DDba2c60cB6fA96e57A713D3d5348224d325C8;  \r\n}",
-        "file": "SimpleStorage/SimpleStoragePrac.sol"
-      }
-    }
-  },
   "StorageFactory/StorageFactory.sol": {
     "__sources__": {
       "StorageFactory/StorageFactory.sol": {
@@ -475,14 +467,6 @@
       }
     }
   },
-  "SimpleStorage/SimpleStorage.sol": {
-    "__sources__": {
-      "SimpleStorage/SimpleStorage.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\n\r\n/*\r\nSPDX-License-Identifier: UNLICENSED\r\n\r\n\r\nIn software law, if you don't explicitly grant a license, copyright law defaults to \"All Rights Reserved.\" By using UNLICENSED, you are explicitly stating: \"This code is private property. You can look at it (since it's public on the blockchain or GitHub), but you do not have permission to copy it, modify it, or use it for your own projects.\"\r\n: Do not confuse UNLICENSED with MIT or Apache. UNLICENSED means no license is granted at all, while MIT means everyone is welcome to use it.\r\n\r\n\r\n\r\n\r\n\r\n\r\n*/\r\n\r\n// It tells anyone reading the code (and the software compiling it) how the code is licensed. MIT is a very popular, permissive open-source license. It essentially means: \"Hey, anyone can use, modify, or share this code for free.\"\r\n// Solidity highly encourages putting this at the top of your files to avoid legal ambiguity about who owns or can use the code.\r\n\r\npragma solidity ^0.8.19; // this is the solidity compiler version we using\r\n// A \"pragma\" is an instruction to the Solidity compiler (the tool that translates your human-readable code into machine code that the blockchain can understand).\r\n\r\n contract SimpleStorage{\r\n // basic variable types\r\n\r\n bool hasFavouriteNumber = true;\r\n uint256 favouriteNumber = 88;\r\n string favouriteNumberInText = \"Eighty-Eight\";\r\n address myAddress = 0xc9DDba2c60cB6fA96e57A713D3d5348224d325C8;  \r\n int256 favouriteInt = -88;\r\n bytes32 favouriteBytes32 = \"cat\";\r\n uint256 abc; // it sets the value to 0 by default and its just here we are initializing\r\n\r\n }\r\n\r\n // this is the main body of the program and contract keyword is very similar to word class in javscript or java and simplestorage is the name of the class\r\n\r\n // uint means unsigned integer which can store 0 and + whole no (0 to 2^(256)-1)\r\n // int means signed interger which can store +ve and -ve both ( -2^{255} to 2^{255} -1)\r\n // ; means end of statement",
-        "file": "SimpleStorage/SimpleStorage.sol"
-      }
-    }
-  },
   "SimpleStorage/Practice.sol": {
     "__sources__": {
       "SimpleStorage/Practice.sol": {
@@ -544,6 +528,22 @@
       "SimpleStorage/Prac3.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract solidityPrac3{\r\n\r\nuint256 public no;\r\n\r\n\r\nstruct info{\r\n    string name;\r\n    string martialStatus;\r\n}\r\n\r\ninfo[] public peopleInfo;\r\n\r\nmapping(string _name => string _martialStatus) public nameToMartStatus;\r\n\r\n\r\nfunction addInfoOfPeople(string memory _name , string memory _martialStatus) public{\r\npeopleInfo.push(info(_name , _martialStatus));\r\nnameToMartStatus[_name] = _martialStatus;\r\n\r\n}\r\n\r\n\r\n\r\nfunction getNum(uint256 num) public{\r\n    no = num;\r\n}\r\n\r\nfunction checkNum() public view returns(uint256){\r\n    return no;\r\n}\r\n\r\nfunction sumOfNum(uint256 a , uint256 b) public pure returns(uint256){\r\n    return a +b;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n}",
         "file": "SimpleStorage/Prac3.sol"
+      }
+    }
+  },
+  "SimpleStorage/SimpleStoragePrac.sol": {
+    "__sources__": {
+      "SimpleStorage/SimpleStoragePrac.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\r\n\r\n\r\npragma solidity ^0.8.19;\r\n\r\ncontract SimpleStorage{\r\n    bool isTrue = true;\r\n    int256 isInt=88;\r\n    uint256 isUINT = 32;\r\n    string isString = \"cat\";\r\n    bytes32 isBytes = \"saad\";\r\n    address myAddress = 0xc9DDba2c60cB6fA96e57A713D3d5348224d325C8;  \r\n}",
+        "file": "SimpleStorage/SimpleStoragePrac.sol"
+      }
+    }
+  },
+  "SimpleStorage/SimpleStorage.sol": {
+    "__sources__": {
+      "SimpleStorage/SimpleStorage.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\n\r\n/*\r\n\r\n\r\n\r\nIn software law, if you don't explicitly grant a license, copyright law defaults to \"All Rights Reserved.\" By using UNLICENSED, you are explicitly stating: \"This code is private property. You can look at it (since it's public on the blockchain or GitHub), but you do not have permission to copy it, modify it, or use it for your own projects.\"\r\n: Do not confuse UNLICENSED with MIT or Apache. UNLICENSED means no license is granted at all, while MIT means everyone is welcome to use it.\r\n\r\n\r\nfor unlicense one i wrote that on top of this file prac soln\r\n\r\n\r\n\r\n*/\r\n\r\n// It tells anyone reading the code (and the software compiling it) how the code is licensed. MIT is a very popular, permissive open-source license. It essentially means: \"Hey, anyone can use, modify, or share this code for free.\"\r\n// Solidity highly encourages putting this at the top of your files to avoid legal ambiguity about who owns or can use the code.\r\n\r\npragma solidity ^0.8.19; // this is the solidity compiler version we using\r\n// A \"pragma\" is an instruction to the Solidity compiler (the tool that translates your human-readable code into machine code that the blockchain can understand).\r\n\r\n contract SimpleStorage{\r\n // basic variable types\r\n\r\n bool hasFavouriteNumber = true;\r\n uint256 favouriteNumber = 88;\r\n string favouriteNumberInText = \"Eighty-Eight\";\r\n address myAddress = 0xc9DDba2c60cB6fA96e57A713D3d5348224d325C8;  \r\n int256 favouriteInt = -88;\r\n bytes32 favouriteBytes32 = \"cat\";\r\n uint256 abc; // it sets the value to 0 by default and its just here we are initializing\r\n\r\n }\r\n\r\n // this is the main body of the program and contract keyword is very similar to word class in javscript or java and simplestorage is the name of the class\r\n\r\n // uint means unsigned integer which can store 0 and + whole no (0 to 2^(256)-1)\r\n // int means signed interger which can store +ve and -ve both ( -2^{255} to 2^{255} -1)\r\n // ; means end of statement",
+        "file": "SimpleStorage/SimpleStorage.sol"
       }
     }
   }

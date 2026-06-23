@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: MIT
 
 /*
-SPDX-License-Identifier: UNLICENSED
+
 
 
 In software law, if you don't explicitly grant a license, copyright law defaults to "All Rights Reserved." By using UNLICENSED, you are explicitly stating: "This code is private property. You can look at it (since it's public on the blockchain or GitHub), but you do not have permission to copy it, modify it, or use it for your own projects."
 : Do not confuse UNLICENSED with MIT or Apache. UNLICENSED means no license is granted at all, while MIT means everyone is welcome to use it.
 
 
-
+for unlicense one i wrote that on top of this file prac soln
 
 
 
