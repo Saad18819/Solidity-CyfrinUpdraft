@@ -141,7 +141,7 @@ Error Handling: Just like send, it fails quietly by returning false. That's why 
 
 
 
-another thing why we send receiver a gas like u are sending money as well as gas like woww craxyy wth is happening ut the thing is when u pay that amnt so to run the code there to send u money or wahtever process the code needs has to run tht code thats why u send the gas 
+another thing why we send receiver a gas like u are sending money as well as gas like woww craxyy wth is happening uk the thing is when u pay that amnt so to run the code there to send u money or wahtever process the code needs has to run tht code thats why u send the gas 
 
 
 
