@@ -5,7 +5,7 @@ pragma solidity ^0.8.0;
 contract safeMath{
     uint8 public bigNumber = 255; 
 
-    // uint8 means an unsigned integer of 8 bits. Because it only has 8 bits, the absolute maximum number it can physically hold is $2^8 - 1$, which is 255. It cannot hold negative numbers, and it cannot hold 256.
+    // uint8 means an unsigned integer of 8 bits. Because it only has 8 bits, the absolute maximum number it can physically hold is 2^8 - $, which is 255. It cannot hold negative numbers, and it cannot hold 256.
 
     function add() public {
     unchecked {bigNumber = bigNumber + 1;}
@@ -37,6 +37,7 @@ contract safeMath{
 
 
 Scenario A: If you DID NOT use unchecked
+
 Because your code is running on version 0.8.0, if you just wrote bigNumber = bigNumber + 1; without the unchecked wrapper, the compiler would secretly run an extra background check: "Is the result smaller than what we started with? Yes (0 is smaller than 255). That means an overflow happened!" The contract would immediately revert (cancel the transaction, throw an error, and freeze bigNumber safely at 255).
 If you don't use unchecked, the transaction fails halfway through and reverts.
 What happens to the variable? The code starts executing, hits 255 + 1, realizes it's an overflow, and screams "Error! Stop everything!" The transaction is cancelled. Any changes made during that transaction are rolled back.
