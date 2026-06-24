@@ -54,14 +54,6 @@
       }
     }
   },
-  "Project/interface.sol": {
-    "__sources__": {
-      "Project/interface.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n// 1. THE INTERFACE: Just a name tag so your code compiles.\r\n// Notice there are NO curly braces {} with code. It ends in a semicolon.\r\ninterface ICalculator {\r\n    function addNumbers(uint256 a, uint256 b) external pure returns (uint256);// function name must be same as it is as it is in that contract\r\n\r\n// Solidity strictly enforces that all functions inside an interface must be marked as external. If you try to use public, internal, or private, the compiler will throw an error and refuse to build.\r\n// The definition of external: In Solidity, external means the function can only be called from outside the contract it lives in.\r\n\r\n\r\n}\r\n\r\n// 2. YOUR CONTRACT\r\ncontract MyDeFiApp {\r\n\r\n    function runMyMath() public pure returns (uint256) {\r\n        // The real machine's address on the blockchain\r\n        address machineAddress = 0x1234567890123456789012345678901234567890; \r\n\r\n        // 3. THE EXECUTION:\r\n        // We wrap the address inside the interface template.\r\n        // This tells Solidity: \"Go to machineAddress, look for a function \r\n        // that matches the 'addNumbers' blueprint, and run it.\"\r\n        uint256 result = ICalculator(machineAddress).addNumbers(5, 10);\r\n\r\n        return result; // Returns 15\r\n    }\r\n}\r\n\r\n\r\n// EXPLANATION\r\n\r\n// interfacemachine.sol: A contract that actually does math.\r\n// interface.sol: A contract that wants to use that machine, utilizing an interface to do it.\r\n\r\n\r\n// in interface.sol you are writing your contract. You want to use that RealCalculatorMachine from interfacemachine.sol, but you don't want to copy-paste its entire code.\r\n\r\n\r\n\r\n// although when u understand it import and interfce works exactly the smae just the difference is in interface u dont need that filet o exist on  our computer u can directly fetch their data ",
-        "file": "Project/interface.sol"
-      }
-    }
-  },
   "Project/FundMe4.sol": {
     "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": ".deps/npm/@chainlink/contracts@1.5.0/src/v0.8/shared/interfaces/AggregatorV3Interface.sol",
     "__sources__": {
@@ -291,14 +283,6 @@
       "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": {
         "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\n// solhint-disable-next-line interface-starts-with-i\ninterface AggregatorV3Interface {\n  function decimals() external view returns (uint8);\n\n  function description() external view returns (string memory);\n\n  function version() external view returns (uint256);\n\n  function getRoundData(\n    uint80 _roundId\n  ) external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);\n\n  function latestRoundData()\n    external\n    view\n    returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);\n}\n",
         "file": "@chainlink/contracts@1.5.0/src/v0.8/shared/interfaces/AggregatorV3Interface.sol"
-      }
-    }
-  },
-  "Project/Interfacemachine.sol": {
-    "__sources__": {
-      "Project/Interfacemachine.sol": {
-        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n// This is the actual contract sitting on the blockchain\r\ncontract RealCalculatorMachine {\r\n    \r\n    // Here is the REAL execution code\r\n    function addNumbers(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a + b; \r\n    }\r\n}\r\n\r\n//Imagine someone else already wrote this contract, compiled it, and deployed it to the blockchain at the address 0x123.... It has the real logic inside it.",
-        "file": "Project/Interfacemachine.sol"
       }
     }
   },
@@ -552,6 +536,22 @@
       "Project/reverts.sol": {
         "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.19;\r\n\r\ncontract FundMe{\r\n\r\n    uint public value  = 1;\r\n    function fund() public payable{\r\n      value = value + 1;\r\n        require(msg.value>1e18 , \"you need to spend more eth\");\r\n    }\r\n\r\n    // REVERT THING\r\n\r\n// When your transaction hits that require statement and fails, Ethereum hits an absolute undo button on the data.\r\n//Any money sent is handed back to the user.\r\n// Any changes to variables or balances are wiped clean, as if the transaction never happened.\r\n// If a transaction fails because of a require statement, the state reverts, but you still lose the gas used up to that point.\r\n\r\n\r\n    function Value() public view returns(uint256){\r\n        return value;\r\n    }\r\n\r\n    function withdraw() public{}\r\n}\r\n\r\n// When Transaction 1 and 2 succeed, your value variable goes from 1 to 2, and then to 3, with both numbers being permanently saved on the blockchain. When Transaction 3 is attempted with a low amount like 0.1 ETH, line 8 temporarily bumps the number up to 4 in the network's scratchpad memory; however, the moment it hits the failed require check on line 9, Ethereum hits a total undo button, wiping that 4 out completely and snapping the permanent value right back to 3 as if the third transaction never even tried to happen.",
         "file": "Project/reverts.sol"
+      }
+    }
+  },
+  "Project/Interfacemachine.sol": {
+    "__sources__": {
+      "Project/Interfacemachine.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n// This is the actual contract sitting on the blockchain\r\ncontract RealCalculatorMachine {\r\n    \r\n    // Here is the REAL execution code\r\n    function addNumbers(uint256 a, uint256 b) public pure returns (uint256) {\r\n        return a + b; \r\n    }\r\n}\r\n\r\n//Imagine someone else already wrote this contract, compiled it, and deployed it to the blockchain at the address 0x123.... It has the real logic inside it.",
+        "file": "Project/Interfacemachine.sol"
+      }
+    }
+  },
+  "Project/interface.sol": {
+    "__sources__": {
+      "Project/interface.sol": {
+        "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n// 1. THE INTERFACE: Just a name tag so your code compiles.\r\n// Notice there are NO curly braces {} with code in interface function. It ends in a semicolon.\r\ninterface ICalculator {\r\n    function addNumbers(uint256 a, uint256 b) external pure returns (uint256);// function name must be same as it is as it is in that contract\r\n\r\n// Solidity strictly enforces that all functions inside an interface must be marked as external. If you try to use public, internal, or private, the compiler will throw an error and refuse to build.\r\n// The definition of external: In Solidity, external means the function can only be called from outside the contract it lives in.\r\n\r\n\r\n}\r\n\r\n// 2. YOUR CONTRACT\r\ncontract MyDeFiApp {\r\n\r\n    function runMyMath() public pure returns (uint256) {\r\n        // The real machine's address on the blockchain\r\n        address machineAddress = 0x1234567890123456789012345678901234567890; \r\n\r\n        // 3. THE EXECUTION:\r\n        // We wrap the address inside the interface template.\r\n        // This tells Solidity: \"Go to machineAddress, look for a function \r\n        // that matches the 'addNumbers' blueprint, and run it.\"\r\n        uint256 result = ICalculator(machineAddress).addNumbers(5, 10);\r\n\r\n        return result; // Returns 15\r\n    }\r\n}\r\n\r\n\r\n// EXPLANATION\r\n\r\n// interfacemachine.sol: A contract that actually does math.\r\n// interface.sol: A contract that wants to use that machine, utilizing an interface to do it.\r\n\r\n\r\n// in interface.sol you are writing your contract. You want to use that RealCalculatorMachine from interfacemachine.sol, but you don't want to copy-paste its entire code.\r\n\r\n\r\n\r\n// although when u understand it import and interfce works exactly the smae just the difference is in interface u dont need that filet o exist on  our computer u can directly fetch their data ",
+        "file": "Project/interface.sol"
       }
     }
   },

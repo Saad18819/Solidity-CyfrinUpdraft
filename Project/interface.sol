@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 // 1. THE INTERFACE: Just a name tag so your code compiles.
-// Notice there are NO curly braces {} with code. It ends in a semicolon.
+// Notice there are NO curly braces {} with code in interface function. It ends in a semicolon.
 interface ICalculator {
     function addNumbers(uint256 a, uint256 b) external pure returns (uint256);// function name must be same as it is as it is in that contract
 
