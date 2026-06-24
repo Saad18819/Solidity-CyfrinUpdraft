@@ -10,7 +10,7 @@ pragma solidity ^0.8.19;
 
 contract FundMe{
     function Fund() public payable{
-   require(msg.value > 1e18 , "Didnt send enough ETHEREUM"); //  1e18 = 10 ki power 18 == 1 ETH so basically minimum 1 eth u gotta pay for this crowdfundint thing
+   require(msg.value > 1e18 , "Didnt send enough ETHEREUM"); //  1e18 = 10 ki power 18 wei == 1 ETH so basically minimum 1 eth u gotta pay for this crowdfundint thing
 // msg.value can be used only in payable function
     }
 
