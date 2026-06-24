@@ -43,7 +43,21 @@ In Solidity, when you deploy a smart contract, changing or reading data from the
         // addrress
            AggregatorV3Interface priceFeed = AggregatorV3Interface(0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419);
            // here the address used is specifically to convert that ETH/USD vala we used
+/*
+Under the hood, priceFeed holds the contract address, but its data type is defined as AggregatorV3Interface. This tells Solidity exactly how to look at and talk to that address.
 
+Think of it like saving a phone number in your smartphone contacts:
+
+The Address (0x5f4e...) is like the raw phone number (just a bunch of digits).
+
+The Interface (AggregatorV3Interface) is like assigning a contact type—telling your phone "this number belongs to a restaurant, so when I click it, show me options to place an order or view a menu."
+
+
+
+
+
+
+*/
 
 
 
