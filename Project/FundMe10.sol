@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol";
 
-// we will learn abt constant & immutability this keywords saves up a lot of gas becoz instead os toring these variables inside storage slot we directly store them inside the bytecode of the contract
+// we will learn abt constant & immutability this keywords saves up a lot of gas becoz instead of storing these variables inside storage slot we directly store them inside the bytecode of the contract
 
 // Constant variables are initialized at compile time, while immutable variables are initialized at deployment time.
 contract giveMeFund{
@@ -22,6 +22,8 @@ address[] public UsersAddress;
 mapping(address funders => uint256 NetAmountPaid) public AddToAmnt;
 
 address public immutable owner;
+
+// first of all for owner u cant write immutable coz constant are initialised during compile time and construcotr is initialised during deployment time if the owner is already initilised at compile time how the fuck we will get the value of msg.sender dude coz later onn u cant change so thats why we use immutable so that the owner is initilised during deployment time
 
 // IMMUTABLE
 // You should use the immutable keyword when you have a state variable that needs to be assigned a value exactly once (usually at deployment time) and will never change after that.
