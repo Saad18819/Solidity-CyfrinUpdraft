@@ -119,6 +119,19 @@
 			},
 			{
 				"inputs": [],
+				"name": "startTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "withdraw",
 				"outputs": [],
 				"stateMutability": "nonpayable",
@@ -165,11 +178,11 @@
 			]
 		},
 		"TimeLockedVault.sol": {
-			"keccak256": "0x4976acbffdb22a3801c3fa47218c318d6cf37fe8270863963c165fbb64775dff",
+			"keccak256": "0x07104e9c820a2caf584648c324d19ab0fa5f4722ad24e317a7b911bc081315a8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://d7637279e4b14b300f2aff056ec7173b16daadcd812f59e6c8dd00db2d9687fa",
-				"dweb:/ipfs/QmbW7RXxKdPppnBszUKAHRRvdBRH1d7yCDmUz5NSaC8MED"
+				"bzz-raw://e2888581796b2693b34c432c0943257edad23c4c4c169825bad4d91532042a3a",
+				"dweb:/ipfs/Qme93xqV69JyLQZ9Fa7m7CyY4mDFbKuqmbCbfJFWFxraDD"
 			]
 		}
 	},
